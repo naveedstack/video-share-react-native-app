@@ -8,14 +8,17 @@
     "scheme": "video-share",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "package": "com.naveed_dev.vshare",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "package": "com.naveed_dev.vshare"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.naveed_dev.vshare"
     },
     "web": {
       "bundler": "metro",
