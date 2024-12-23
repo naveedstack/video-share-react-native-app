@@ -11,19 +11,19 @@ const Signup = () => {
   const [form, setForm] = useState({ userName: "", email: "", password: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const signupHandler = async () => {
-    // if (form.email === "") Alert.alert("Error", "Please enter your email");
-    // else if (form.password === "")
-    //   Alert.alert("Error", "Please enter your passowrd");
-    // else {
-    //   try {
-    //     createUser();
-    //     isSubmitting(true);
-    //   } catch (error) {
-    //   } finally {
-    //     setIsSubmitting(false);
-    //   }
-    // }
-    createUser();
+    if (!form.userName) Alert.alert("Error", "Please enter username");
+    else if (form.email === "") Alert.alert("Error", "Please enter your email");
+    else if (form.password === "")
+      Alert.alert("Error", "Please enter your passowrd");
+    else {
+      try {
+        createUser(form);
+        isSubmitting(true);
+      } catch (error) {
+      } finally {
+        setIsSubmitting(false);
+      }
+    }
   };
   return (
     <SafeAreaView className="bg-primary h-full">
@@ -39,7 +39,7 @@ const Signup = () => {
           </Text>
           <FormField
             title={"Username"}
-            value={form.email}
+            value={form.userName}
             handleChange={(e) => setForm({ ...form, userName: e })}
             containerStyles={"mt-7"}
           />

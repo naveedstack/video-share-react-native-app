@@ -1,8 +1,8 @@
 import { ID } from "react-native-appwrite";
 import { account } from "../lib/appwrite";
 
-export const createUser = ({ email, password }) => {
-  account.create(ID.unique(), "me@example.com", "password", "Jane Doe").then(
+export const createUser = ({userName, email, password}) => {
+  account.create(ID.unique(), email, password, userName).then(
     function (response) {
       console.log(response);
     },
