@@ -16,7 +16,7 @@ const Signup = () => {
     else if (form.password === "")
       Alert.alert("Error", "Please enter your passowrd");
     else {
-      isSubmitting(true);
+      setIsSubmitting(true);
 
       try {
         await createUser(form);
