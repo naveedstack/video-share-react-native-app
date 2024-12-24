@@ -5,18 +5,20 @@ import { images } from "../../constants";
 import FormField from "../../components/FormField";
 import CustomButton from "../../components/CustomButton";
 import { Link, router } from "expo-router";
+import { signIn } from "../../api/user";
 
 const SignIn = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const loginHanlder = () => {
+  const loginHanlder = async() => {
     if (form.email === "") Alert.alert("Error", "Please enter your email");
     else if (form.password === "")
       Alert.alert("Error", "Please enter your passowrd");
     else {
+      setIsSubmitting(true);
       try {
-        setIsSubmitting(true);
-        router.push("/home");
+        await signIn(form.email, form.password)
+        router.replace("/home");
       } catch (error) {
         Alert.alert("Error", "Something went wrong. Please try again.");
       } finally {

@@ -1,11 +1,14 @@
-import {router } from "expo-router";
+import { Redirect, router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Image, ScrollView, Text, View } from "react-native";
 import { images } from "../constants";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CustomButton from "../components/CustomButton";
+import { useGlobalContext } from "../context/ContextProvider";
 
 export default function App() {
+  const { isLoading, isLoggedIn } = useGlobalContext;
+  if (!isLoading && isLoggedIn) return <Redirect href="/home" />;
   return (
     <SafeAreaView className="bg-primary h-full">
       <ScrollView contentContainerStyle={{ height: "100%" }}>
@@ -37,7 +40,11 @@ export default function App() {
             Exploration with Aora
           </Text>
 
-          <CustomButton title="Continue With Email" handlePress={()=> router.push('/sign-in')} containerStyles="w-full mt-7"/>
+          <CustomButton
+            title="Continue With Email"
+            handlePress={() => router.push("/sign-in")}
+            containerStyles="w-full mt-7"
+          />
         </View>
       </ScrollView>
       <StatusBar backgroundColor="#161622" style="light" />

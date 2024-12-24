@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "../../constants";
 import FormField from "../../components/FormField";
 import CustomButton from "../../components/CustomButton";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { createUser } from "../../api/user";
 
 const Signup = () => {
@@ -16,9 +16,11 @@ const Signup = () => {
     else if (form.password === "")
       Alert.alert("Error", "Please enter your passowrd");
     else {
+      isSubmitting(true);
+
       try {
-        createUser(form);
-        isSubmitting(true);
+        await createUser(form);
+        router.replace('/home')
       } catch (error) {
       } finally {
         setIsSubmitting(false);
